@@ -1,0 +1,73 @@
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <link rel="stylesheet" href="add-aeroport.component.css">
+  <title>ATM - Planuri de zbor</title>
+</head>
+
+<div class="ui sizer vertical segment">
+  <div class="ui huge center blue aligned header">ATM Planuri Zbor</div>
+</div>
+<div class="ui center alligned container">
+  <div class="ui compact blue segment">
+    <div class="five inverted blue ui buttons">
+      <button class="ui button" routerLink="/planurizbor">Planuri zbor</button>
+      <button class="ui button" routerLink="/segmenteruta">Segmente ruta</button>
+      <button class="ui button" routerLink="/punctenav">Puncte navigatie</button>
+      <button class="ui button" routerLink="/aeroporturi">Aeroporturi</button>
+      <button class="ui button" routerLink="/zboruri">Zboruri</button>
+
+    </div>
+
+    <div id="ATM">
+
+      <div id="gap-10"></div>
+      <h4 class="ui dividing header">Adaugati un avion</h4>
+        <form class="ui form">
+          <div class="field">
+
+            <label>Introduceti Indicativul aeroportului</label>
+            <input type="text"
+                   name="aeroport"
+                   [(ngModel)]="aeroport.nume"
+                   placeholder="Introduceti numele aeroportului"/>
+          </div>
+          <div class="field">
+            <label>Introduceti numele tarii</label>
+            <input type="text"
+                   name="tara"
+                   [(ngModel)]="aeroport.tara"
+                   placeholder="Introduceti numele tarii"/>
+          </div>
+          <div class="field">
+            <label>Introduceti latitudinea aeroportului</label>
+
+            <input type="text"
+                   name="latitudine"
+                   [(ngModel)]="aeroport.latitudine"
+                   placeholder="Introduceti latitudinea aeroportului"/>
+          </div>
+          <div class="field">
+            <label>Introduceti longitudinea aeroportului</label>
+            <input type="text"
+                   name="longitudine"
+                   [(ngModel)]="aeroport.longitudine"
+                   placeholder="Introduceti longitudinea aeroportului"/>
+          </div>
+
+          <button class="ui button" type="submit" (click)="saveAeroport()">Adauga aeroport</button>
+          <button class="ui button" *ngIf="aeroport.id" (click)="deleteAeroport(aeroport.id)">Delete</button>
+        </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="ui blue footer segment" id="footer">
+  <div class="ui container">
+    Planuri Zbor
+  </div>
+</div>
+

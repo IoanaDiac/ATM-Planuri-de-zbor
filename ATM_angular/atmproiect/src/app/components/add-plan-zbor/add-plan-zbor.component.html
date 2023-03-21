@@ -1,0 +1,72 @@
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <link rel="stylesheet" href="add-plan-zbor.component.css">
+  <title>ATM - Planuri de zbor</title>
+</head>
+
+<div class="ui sizer vertical segment">
+  <div class="ui huge center blue aligned header">ATM Planuri Zbor</div>
+</div>
+<div class="ui center alligned container">
+  <div class="ui compact blue segment">
+    <div class="five inverted blue ui buttons">
+      <button class="ui button" routerLink="/planurizbor">Planuri zbor</button>
+      <button class="ui button" routerLink="/segmenteruta">Segmente ruta</button>
+      <button class="ui button" routerLink="/punctenav">Puncte navigatie</button>
+      <button class="ui button" routerLink="/aeroporturi">Aeroporturi</button>
+      <button class="ui button" routerLink="/zboruri">Zboruri</button>
+
+    </div>
+
+    <div id="ATM">
+
+      <div id="gap-10"></div>
+      <h4 class="ui dividing header">Adaugati caracteristicile unui Plan de Zbor</h4>
+      <form class="ui form">
+        <div class="field">
+
+          <label>Introduceti Id-ul Zborului</label>
+          <select  [(ngModel)]="planZbor.zbor" class="form-control" name="something">
+            <option *ngFor="let zbor of zboruri" [ngValue]=zbor>{{zbor.id}}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Introduceti Segmentul de Ruta</label>
+          <select  [(ngModel)]="planZbor.segmentRutaId" class="form-control" name="something2">
+            <option *ngFor="let segmentRuta of segmenteRuta" [ngValue]=segmentRuta>{{segmentRuta.indicativ}}</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Introduceti Nivelul de Zbor(ft) Start</label>
+
+          <input type="text"
+                 name="FL1"
+                 [(ngModel)]="planZbor.fl1"
+                 placeholder="FL1"/>
+        </div>
+        <div class="field">
+          <label>Introduceti Nivelul de Zbor(ft) End</label>
+          <input type="text"
+                 name="latitudine"
+                 [(ngModel)]="planZbor.fl2"
+                 placeholder="FL2"/>
+        </div>
+
+        <button class="ui button" type="submit" (click)="savePlanZbor()">Adauga Plan Zbor</button>
+        <button class="ui button" *ngIf="planZbor.id" (click)="deletePlanZbor(planZbor.id)">Delete</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="ui blue footer segment" id="footer">
+  <div class="ui container">
+    Planuri Zbor
+  </div>
+</div>
+

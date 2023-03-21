@@ -1,0 +1,83 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <link rel="stylesheet" href="list-segmente-ruta.component.css">
+  <title>ATM - Planuri de zbor</title>
+</head>
+
+<div class="ui sizer vertical segment">
+  <div class="ui huge center blue aligned header">ATM Planuri Zbor</div>
+</div>
+<div class="ui center alligned container">
+  <div class="ui compact blue segment">
+    <div class="five inverted blue ui buttons">
+      <button class="ui button" routerLink="/planurizbor">Planuri zbor</button>
+      <button class="ui button" routerLink="/segmenteruta">Segmente ruta</button>
+      <button class="ui button" routerLink="/punctenav">Puncte navigatie</button>
+      <button class="ui button" routerLink="/aeroporturi">Aeroporturi</button>
+      <button class="ui button" routerLink="/zboruri">Zboruri</button>
+
+    </div>
+
+    <div class="ui category search">
+      <div class="ui icon input">
+        <input type="text"
+               [(ngModel)]="filters.keyword"
+               name="keyword"
+               (input)="listSegmenteRuta()" placeholder="Cauta segmente ruta">
+        <i class="search icon"></i>
+      </div>
+
+      <select class="ui dropdown"  name="sortBy" type="hidden" [(ngModel)]="filters.sortBy" (change)="listSegmenteRuta()">
+        <option>Indicativ</option>
+        <option>Distanta</option>
+      </select>
+
+
+      <div class="results"></div>
+    </div>
+
+    <div id="ATM">
+      <div>
+        <table class="ui olive center fixed celled  table">
+          <thead>
+          <tr>
+            <th >Indicativ</th>
+            <th >Distanta</th>
+            <th >Punct Start</th>
+            <th >Punct End</th>
+          </tr>
+
+          </thead>
+          <tbody>
+          <tr *ngFor="let segmentRuta of segmenteRuta">
+
+            <td>{{segmentRuta.indicativ}}</td>
+            <td>{{segmentRuta.distanta}}</td>
+            <td>{{segmentRuta.punctStart.indicatif}}</td>
+            <td>{{segmentRuta.punctEnd.indicatif}}</td>
+
+            <td>
+              <button class="ui right olive tiny button" routerLink="/editsegmentruta/{{segmentRuta.id}}" >Edit details</button>
+              <button class="ui right red basic tiny button" (click)="deleteSegmenteRuta(segmentRuta.id)" >Delete</button>
+
+            </td>
+          </tr>
+          <tbody>
+
+        </table>
+
+
+      </div>
+    </div>
+    <div id="ATM2">
+      <div class="ui left floated small primary labeled icon button" routerLink="/addsegmentruta" right>
+        <i class="user icon"></i> Adauga Segment ruta
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

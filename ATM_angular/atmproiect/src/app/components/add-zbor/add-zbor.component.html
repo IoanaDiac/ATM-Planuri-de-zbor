@@ -1,0 +1,99 @@
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <link rel="stylesheet" href="add-zbor.component.css">
+  <title>ATM - Planuri de zbor</title>
+</head>
+
+<div class="ui sizer vertical segment">
+  <div class="ui huge center blue aligned header">ATM Planuri Zbor</div>
+</div>
+<div class="ui center alligned container">
+  <div class="ui compact blue segment">
+    <div class="five inverted blue ui buttons">
+      <button class="ui button" routerLink="/planurizbor">Planuri zbor</button>
+      <button class="ui button" routerLink="/segmenteruta">Segmente ruta</button>
+      <button class="ui button" routerLink="/punctenav">Puncte navigatie</button>
+      <button class="ui button" routerLink="/aeroporturi">Aeroporturi</button>
+      <button class="ui button" routerLink="/zboruri">Zboruri</button>
+
+    </div>
+
+    <div id="ATM">
+
+      <div id="gap-10"></div>
+      <h4 class="ui dividing header">Adaugati caracteristicile unui zbor</h4>
+      <form class="ui form">
+        <div class="field">
+
+          <label>Introduceti ID-ul Zborului</label>
+          <input type="text"
+                 name="zbor_id"
+                 [(ngModel)]="zbor.id"
+                 placeholder="ID"/>
+        </div>
+        <div class="field">
+          <label>Introduceti Aeroportul de Decolare</label>
+          <select  [(ngModel)]="zbor.aeroportStart" class="form-control" name="something">
+          <option *ngFor="let aeroport of aeroporturi" [ngValue]=aeroport>{{aeroport.nume}}</option>
+          </select>
+
+        </div>
+        <div class="field">
+          <label>Introduceti Aeroportul Destinatie</label>
+
+          <select  [(ngModel)]="zbor.aeroportEnd" class="form-control" name="something2">
+            <option *ngFor="let aeroport of aeroporturi" [ngValue]=aeroport>{{aeroport.nume}}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Introduceti ETD</label>
+          <input type="text"
+                 name="etd YYYY-MM-ZZ"
+                 [(ngModel)]="zbor.etd"
+                 placeholder="Introduceti ETD YYYY-MM-ZZ"/>
+        </div>
+        <div class="field">
+          <label>Introduceti ETA</label>
+          <input type="text"
+                 name="eta YYYY-MM-ZZ"
+                 [(ngModel)]="zbor.eta"
+                 placeholder="Introduceti ETA YYYY-MM-ZZ"/>
+        </div>
+        <div class="field">
+          <label>Introduceti Indicativul Zborului</label>
+          <input type="text"
+                 name="indicativ_zbor"
+                 [(ngModel)]="zbor.indicativ"
+                 placeholder="Indicativ"/>
+        </div>
+        <div class="field">
+          <label>Introduceti Modelul Avionului</label>
+          <input type="text"
+                 name="avion"
+                 [(ngModel)]="zbor.avion"
+                 placeholder="Avion"/>
+        </div>
+        <div class="field">
+          <label>Introduceti Compania Aeriana</label>
+          <input type="text"
+                 name="companie"
+                 [(ngModel)]="zbor.companie"
+                 placeholder="Introduceti Compania Aeriana"/>
+        </div>
+        <button class="ui button" type="submit" (click)="saveZbor()">Adauga ZBOR</button>
+        <button class="ui button" *ngIf="zbor.id" (click)="deleteZbor(zbor.id)">Delete</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="ui blue footer segment" id="footer">
+  <div class="ui container">
+    Planuri Zbor
+  </div>
+</div>
+
